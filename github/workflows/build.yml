@@ -1,0 +1,48 @@
+workflow_content = '''
+name: Build Android APK
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+        
+    - name: Install system dependencies
+      run: |
+        sudo apt update
+        sudo apt install -y git zip unzip openjdk-8-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
+        
+    - name: Install Buildozer
+      run: pip install buildozer cython==0.29.19
+      
+    - name: Build APK with Buildozer
+      run: |
+        buildozer init
+        buildozer -v android debug
+        
+    - name: Upload APK artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: vagasbr-apk
+        path: bin/*.apk
+'''
+
+print("📋 ARQUIVO 3: .github/workflows/build.yml")
+print("🎯 COMO CRIAR NO GITHUB:")
+print("1. Clique 'Add file' → 'Create new file'")
+print("2. Nome do arquivo: .github/workflows/build.yml")
+print("3. Cole o conteúdo acima")
+print("4. Commit: 'Adicionando compilação automática'")
+print("5. Clique 'Commit new file'")
