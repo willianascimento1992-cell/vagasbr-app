@@ -1,0 +1,17 @@
+requirements_content = '''
+kivy==2.1.0
+kivymd==0.104.2
+requests
+certifi
+urllib3
+idna
+charset-normalizer
+'''
+
+print("📋 ARQUIVO 2: requirements.txt")
+print("🎯 COMO CRIAR NO GITHUB:")
+print("1. No seu repositório, clique 'Add file' → 'Create new file'")
+print("2. Nome do arquivo: requirements.txt")
+print("3. Cole o conteúdo acima")
+print("4. Commit: 'Adicionando dependências Python'")
+print("5. Clique 'Commit new file'")
